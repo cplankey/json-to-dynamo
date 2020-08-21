@@ -1,0 +1,37 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  json-to-dynamodb
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 300
+
+Parameters:
+  DynamoDBTableNameParameter:
+    Type: String
+
+Resources:
+  JSONToDynamoDBFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: json-to-dynamodb/
+      Handler: app.lambdaHandler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref DynamoDBTableNameParameter
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref DynamoDBTableNameParameter
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  JSONToDynamoDBFunction:
+    Description: "JSON to Dynamo Lambda Function ARN"
+    Value: !GetAtt JSONToDynamoDBFunction.Arn
+  JSONToDynamoDBFunctionIamRole:
+    Description: "Implicit IAM Role created for JSON to Dynamo function"
+    Value: !GetAtt JSONToDynamoDBFunctionRole.Arn

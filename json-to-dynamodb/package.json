@@ -1,0 +1,12 @@
+{
+  "name": "json-to-dynamodb",
+  "version": "1.0.0",
+  "description": "Takes JSON array and inserts it to dynamoDB",
+  "main": "app.js",
+  "repository": "https://github.com/cplankey/json-to-dynamo.gi",
+  "author": "Chris Plankey",
+  "license": "MIT",
+  "scripts": {
+    "test": "mocha tests/unit/"
+  }
+}

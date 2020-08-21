@@ -1,0 +1,14 @@
+[
+    {
+        "pk": "primaryKey1",
+        "sk": "secondaryKey"
+    },
+    {
+        "pk": "primaryKey2",
+        "sk": "secondaryKey"
+    },
+    {
+        "pk": "primaryKey3",
+        "sk": "secondaryKey"
+    }
+]
